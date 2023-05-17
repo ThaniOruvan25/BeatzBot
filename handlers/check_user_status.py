@@ -13,7 +13,7 @@ async def handle_user_status(bot, cmd):
         await db.add_user(chat_id)
         await bot.send_message(
             Config.LOG_CHANNEL,
-            f"#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started @{Config.BOT_USERNAME} !!"
+            f"<b>#NewUser #{cmd.from_user.first_name}\n\nName - [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\nTG ID - {cmd.from_user.id}\n\nTotal Users - <code> await db.total_users_count()<\code><\b>"
         )
 
     ban_status = await db.get_ban_status(chat_id)
@@ -23,6 +23,6 @@ async def handle_user_status(bot, cmd):
         ).days > ban_status["ban_duration"]:
             await db.remove_ban(chat_id)
         else:
-            await cmd.reply_text("You are Banned to Use This Bot 🥺", quote=True)
+            await cmd.reply_text("<b>ʏᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ʙʏ ᴍʏ ᴀᴅᴍɪɴ! ᴄᴏɴᴛᴀᴄᴛ @ViralBeatzBot ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ.<\b>", quote=True)
             return
     await cmd.continue_propagation()

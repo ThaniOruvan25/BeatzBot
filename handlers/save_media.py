@@ -51,8 +51,7 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
         )
         share_link = f"https://telegram.dog/{Config.BOT_USERNAME}?start=ViralBeatz_{str_to_b64(str(SaveMessage.id))}"
         await editable.edit(
-            f"**Batch Files Stored in my Database!**\n\n <code>{share_link}<\code>\n\n"
-            f"Just Click the link to get your files!"
+            f"**𝕐𝕠𝕦𝕣 𝔽𝕚𝕝𝕖𝕤 𝕃𝕚𝕟𝕜 ℂ𝕣𝕖𝕒𝕥𝕖𝕕!**\n\n 𝕃𝕚𝕟𝕜: <code>{share_link}<\code>\n\n"
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("Lɪɴᴋ", url=share_link)],
                  [InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
@@ -61,7 +60,11 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
             disable_web_page_preview=True
         )
         await bot.send_message(
-            chat_id=int(Config.LOG_CHANNEL 
+            chat_id=int(Config.DB_CHANNEL),
+            text=f"#NewBatch #{editable.reply_to_message.from_user.first_name} #{editable.reply_to_message.from_user.id}\n\n[{editable.reply_to_message.from_user.first_name}](tg://user?id={editable.reply_to_message.from_user.first_name}) Got Batch Link!",
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Open Link", url=share_link)]])
+        )
         await bot.send_message(
             chat_id=int(Config.LOG_CHANNEL),
             text=f"#NewBatch #{editable.reply_to_message.from_user.first_name} #{editable.reply_to_message.from_user.id}\n\n[{editable.reply_to_message.from_user.first_name}](tg://user?id={editable.reply_to_message.from_user.first_name}) Got Batch Link!",
@@ -87,17 +90,18 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         forwarded_msg = await message.forward(Config.DB_CHANNEL)
         file_er_id = str(forwarded_msg.id)
         await forwarded_msg.reply_text(
-            f"#PRIVATE_FILE:\n\n[{message.from_user.first_name}](tg://user?id={message.from_user.id}) Got File Link!",
-            disable_web_page_preview=True)
-        share_link = f"https://t.me/{Config.BOT_USERNAME}?start=AbirHasan2005_{str_to_b64(file_er_id)}"
+            f"#NewFile #{message.from_user.first_name} #{message.from_user.id} :\n\n[{message.from_user.first_name}](tg://user?id={message.from_user.id}) Got File Link!",
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Open Link", url=share_link)]])
+        )
+        share_link = f"https://telegram.dog/{Config.BOT_USERNAME}?start=ViralBeatz_{str_to_b64(file_er_id)}"
         await editable.edit(
-            "**Your File Stored in my Database!**\n\n"
-            f"Here is the Permanent Link of your file: {share_link} \n\n"
-            "Just Click the link to get your file!",
+            f"**𝕐𝕠𝕦𝕣 𝔽𝕚𝕝𝕖 𝕃𝕚𝕟𝕜 ℂ𝕣𝕖𝕒𝕥𝕖𝕕!**\n\n"
+            f"𝕃𝕚𝕟𝕜:<code>{share_link}<\code> \n\n",
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Open Link", url=share_link)],
-                 [InlineKeyboardButton("Bots Channel", url="https://t.me/Discovery_Updates"),
-                  InlineKeyboardButton("Support Group", url="https://t.me/JoinOT")]]
+                [[InlineKeyboardButton("Lɪɴᴋ", url=share_link)],
+                 [InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
+                  InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBotd")]]
             ),
             disable_web_page_preview=True
         )

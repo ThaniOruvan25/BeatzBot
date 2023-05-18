@@ -40,7 +40,7 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
             if sent_message is None:
                 continue
             message_ids_str += f"{str(sent_message.id)} "
-            await asyncio.sleep(2)
+            await asyncio.sleep(1)
         SaveMessage = await bot.send_message(
             chat_id=Config.DB_CHANNEL,
             text=message_ids_str,
@@ -49,20 +49,22 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
                 InlineKeyboardButton("Delete Batch", callback_data="closeMessage")
             ]])
         )
-        share_link = f"https://t.me/{Config.BOT_USERNAME}?start=AbirHasan2005_{str_to_b64(str(SaveMessage.id))}"
+        share_link = f"https://telegram.dog/{Config.BOT_USERNAME}?start=ViralBeatz_{str_to_b64(str(SaveMessage.id))}"
         await editable.edit(
-            f"**Batch Files Stored in my Database!**\n\nHere is the Permanent Link of your files: {share_link} \n\n"
-            f"Just Click the link to get your files!",
+            f"**Batch Files Stored in my Database!**\n\n <code>{share_link}<\code>\n\n"
+            f"Just Click the link to get your files!"
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Open Link", url=share_link)],
-                 [InlineKeyboardButton("Bots Channel", url="https://t.me/Discovery_Updates"),
-                  InlineKeyboardButton("Support Group", url="https://t.me/JoinOT")]]
+                [[InlineKeyboardButton("Lɪɴᴋ", url=share_link)],
+                 [InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
+                  InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBotd")]]
             ),
             disable_web_page_preview=True
         )
         await bot.send_message(
+            chat_id=int(Config.LOG_CHANNEL 
+        await bot.send_message(
             chat_id=int(Config.LOG_CHANNEL),
-            text=f"#BATCH_SAVE:\n\n[{editable.reply_to_message.from_user.first_name}](tg://user?id={editable.reply_to_message.from_user.id}) Got Batch Link!",
+            text=f"#NewBatch #{editable.reply_to_message.from_user.first_name} #{editable.reply_to_message.from_user.id}\n\n[{editable.reply_to_message.from_user.first_name}](tg://user?id={editable.reply_to_message.from_user.first_name}) Got Batch Link!",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Open Link", url=share_link)]])
         )

@@ -74,12 +74,11 @@ async def start(bot: Client, cmd: Message):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("Support Group", url="https://t.me/JoinOT"),
-                        InlineKeyboardButton("Bots Channel", url="https://t.me/Discovery_Updates")
+                        InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
+                        InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots)
                     ],
                     [
-                        InlineKeyboardButton("About Bot", callback_data="aboutbot"),
-                        InlineKeyboardButton("About Dev", callback_data="aboutdevs")
+                        InlineKeyboardButton("Aʙᴏᴜᴛ", callback_data="about")
                     ]
                 ]
             )
@@ -120,8 +119,7 @@ async def main(bot: Client, message: Message):
                 return
 
         if message.from_user.id in Config.BANNED_USERS:
-            await message.reply_text("Sorry, You are banned!\n\nContact [Support Group](https://t.me/JoinOT)",
-                                     disable_web_page_preview=True)
+            await query.answer("<b>ʏᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ʙʏ ᴍʏ ᴀᴅᴍɪɴ! ᴄᴏɴᴛᴀᴄᴛ @ViralBeatzBot ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ.<\b>", show_alert=True)
             return
 
         if Config.OTHER_USERS_CAN_SAVE_FILE is False:
@@ -130,8 +128,8 @@ async def main(bot: Client, message: Message):
         await message.reply_text(
             text="**Choose an option from below:**",
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Save in Batch", callback_data="addToBatchTrue")],
-                [InlineKeyboardButton("Get Sharable Link", callback_data="addToBatchFalse")]
+                [InlineKeyboardButton("Sᴀᴠᴇ ɪɴ Bᴀᴛᴄʜ", callback_data="addToBatchTrue")],
+                [InlineKeyboardButton("Gᴇᴛ Lɪɴᴋ", callback_data="addToBatchFalse")]
             ]),
             quote=True,
             disable_web_page_preview=True
@@ -148,10 +146,10 @@ async def main(bot: Client, message: Message):
         try:
             forwarded_msg = await message.forward(Config.DB_CHANNEL)
             file_er_id = str(forwarded_msg.id)
-            share_link = f"https://t.me/{Config.BOT_USERNAME}?start=AbirHasan2005_{str_to_b64(file_er_id)}"
+            share_link = f"https://t.me/{Config.BOT_USERNAME}?start=ViralBeatz_{str_to_b64(file_er_id)}"
             CH_edit = await bot.edit_message_reply_markup(message.chat.id, message.id,
                                                           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(
-                                                              "Get Sharable Link", url=share_link)]]))
+                                                              "Gᴇᴛ Sᴛᴏʀᴇᴅ Lɪɴᴋ", url=share_link)]]))
             if message.chat.username:
                 await forwarded_msg.reply_text(
                     f"#CHANNEL_BUTTON:\n\n[{message.chat.title}](https://t.me/{message.chat.username}/{CH_edit.id}) Channel's Broadcasted File's Button Added!")
@@ -164,6 +162,10 @@ async def main(bot: Client, message: Message):
             await bot.send_message(
                 chat_id=int(Config.LOG_CHANNEL),
                 text=f"#FloodWait:\nGot FloodWait of `{str(sl.value)}s` from `{str(message.chat.id)}` !!",
+                disable_web_page_preview=True
+            await bot.send_message
+                chat_id=int(Config.BOT_OWNER),
+                text=f"Flood Wait From Channel\n\nChannel Name - {message.chat.title}\nChannel id - {str(message.chat.id)}\nChannel Link - {message.chat.username}\n\n <code> /ban_user {str(message.chat.id)} <\code>",
                 disable_web_page_preview=True
             )
         except Exception as err:

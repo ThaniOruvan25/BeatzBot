@@ -55,7 +55,7 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("Lɪɴᴋ", url=share_link)],
                  [InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
-                  InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBotd")]]
+                  InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots")]]
             ),
             disable_web_page_preview=True
         )
@@ -101,7 +101,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("Lɪɴᴋ", url=share_link)],
                  [InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
-                  InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBotd")]]
+                  InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots")]]
             ),
             disable_web_page_preview=True
         )

@@ -302,8 +302,7 @@ async def _banned_users(_, m: Message):
 @Bot.on_message(filters.private & filters.command("clear_batch"))
 async def clear_user_batch(bot: Client, m: Message):
     MediaList[f"{str(m.from_user.id)}"] = []
-    await m.reply_text("Cleared your batch files successfully!")
-         
+    await m.reply_text("Cleared your batch files successfully!")         
 
 @Bot.on_callback_query()
 async def button(bot: Client, cmd: CallbackQuery):
@@ -349,8 +348,8 @@ async def button(bot: Client, cmd: CallbackQuery):
             try:
                 user = await bot.get_chat_member(channel_chat_id, cmd.message.chat.id)
                 if user.status == "kicked":
-                    await cmd.answer(
-                        text="<b>ʏᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ʙʏ ᴍʏ ᴀᴅᴍɪɴ! ᴄᴏɴᴛᴀᴄᴛ @ViralBeatzBot ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ.<\b>",show_alert=True
+                    await cmd.message.edit(
+                        text="<b>ʏᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ʙʏ ᴍʏ ᴀᴅᴍɪɴ! ᴄᴏɴᴛᴀᴄᴛ @ViralBeatzBot ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ.<\b>",
                         disable_web_page_preview=True
                     )
                     return
@@ -386,7 +385,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                         InlineKeyboardButton("Bᴏᴛ'ꜱ Cʜᴀɴɴᴇʟ", url="https://t.me/ThaniBots")
                     ],
                     [
-                        InlineKeyboardButton("Aʙᴏᴜᴛ", callback_data="about")
+                        InlineKeyboardButton("Aʙᴏᴜᴛ", callback_data="about"),
                         InlineKeyboardButton("Cʟᴏꜱᴇ", callback_data="close_data")
                     ]
                 ]
@@ -438,6 +437,7 @@ async def button(bot: Client, cmd: CallbackQuery):
 
     elif "closeMessage" in cb_data:
         await cmd.message.delete(True)
+        
     try:
         await cmd.answer()
     except QueryIdInvalid: pass

@@ -30,11 +30,16 @@ async def handle_force_sub(bot: Client, cmd: Message):
     try:
         user = await bot.get_chat_member(chat_id=channel_chat_id, user_id=cmd.from_user.id)
         if user.status == "kicked":
-            await bot.send_message(
+            d = await bot.send_message(
                 chat_id=cmd.from_user.id,
-                text="Yᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ.",
-                disable_web_page_preview=True       
-            )
+                text="<b>Yᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ.<\b>",
+                disable_web_page_preview=True
+                )
+            await asyncio.sleep(120)
+            await d.delete()
+            await bot.send_message(
+                chat_id=cmd.Config.BOT_OWNER,
+                text="Banned User started the Bot.\n\n"
             return 400
     except UserNotParticipant:
         try:
@@ -44,7 +49,7 @@ async def handle_force_sub(bot: Client, cmd: Message):
             return 200
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="**Please Join My Updates Channel to use this Bot!**\n\n"
+            text="Yᴏᴜ ᴅɪᴅɴ'ᴛ ᴊᴏɪɴ ᴛʜᴇ ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ. Jᴏɪɴ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ."
                  "Due to Overload, Only Channel Subscribers can use the Bot!",
             reply_markup=InlineKeyboardMarkup(
                 [

@@ -32,8 +32,8 @@ async def handle_force_sub(bot: Client, cmd: Message):
         if user.status == "kicked":
             await bot.send_message(
                 chat_id=cmd.from_user.id,
-                text="<b>ʏᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ʙʏ ᴍʏ ᴀᴅᴍɪɴ! ᴄᴏɴᴛᴀᴄᴛ @ViralBeatzBot ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ. <\b>",
-                disable_web_page_preview=True
+                text="Yᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ.",
+                disable_web_page_preview=True       
             )
             return 400
     except UserNotParticipant:

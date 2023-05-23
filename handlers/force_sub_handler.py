@@ -38,7 +38,7 @@ async def handle_force_sub(bot: Client, cmd: Message):
             await asyncio.sleep(120)
             await d.delete()
             await bot.send_message(
-                chat_id=Config.BOT_OWNER,
+                chat_id=int(Config.BOT_OWNER),
                 text="Banned User started the Bot.\n\n"
             return 400
     except UserNotParticipant:

@@ -20,7 +20,9 @@ async def handle_user_status(bot, cmd):
             Config.TO_CHANNEL,
             f"<b>#NewUser #{cmd.from_user.first_name} #{cmd.from_user.id} #{Config.BOT_USERNAME}\n\n➺Nᴀᴍᴇ - [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - {cmd.from_user.id}\n\n➺Tᴏᴛᴀʟ Uꜱᴇʀꜱ - <code>{db.total_users_count()}<\code><\b>"
             )
-
+    ban_status = await db.get_ban_status(chat_id)
+    if ban_status["is_banned"]
+    await.z.edit(f"<b>#NewUser #{cmd.from_user.first_name} #{cmd.from_user.id} #{Config.BOT_USERNAME}\n\n➺Nᴀᴍᴇ - [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - {cmd.from_user.id}\n\n <i>User Banned<\i>➺Tᴏᴛᴀʟ Uꜱᴇʀꜱ - <code>{db.total_users_count()}<\code><\b>
     ban_status = await db.get_ban_status(chat_id)
     if ban_status["is_banned"]:
         if (

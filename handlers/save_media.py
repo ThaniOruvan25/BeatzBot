@@ -51,7 +51,7 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
         )
         share_link = f"https://telegram.dog/{Config.BOT_USERNAME}?start=ViralBeatz_{str_to_b64(str(SaveMessage.id))}"
         await editable.edit(
-            f"**𝕐𝕠𝕦𝕣 𝔽𝕚𝕝𝕖𝕤 𝕃𝕚𝕟𝕜 ℂ𝕣𝕖𝕒𝕥𝕖𝕕!**\n\n 𝕃𝕚𝕟𝕜: <code>{share_link}<\code>\n\n"
+            f"**Your Files Saved in Batch**\n\n Link: <code>{share_link}<\code>\n\n"
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("Lɪɴᴋ", url=share_link)],
                  [InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
@@ -96,8 +96,8 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         )
         share_link = f"https://telegram.dog/{Config.BOT_USERNAME}?start=ViralBeatz_{str_to_b64(file_er_id)}"
         await editable.edit(
-            f"**𝕐𝕠𝕦𝕣 𝔽𝕚𝕝𝕖 𝕃𝕚𝕟𝕜 ℂ𝕣𝕖𝕒𝕥𝕖𝕕!**\n\n"
-            f"𝕃𝕚𝕟𝕜:<code>{share_link}<\code> \n\n",
+            f"**Your File Saved**\n\n"
+            f"Link:<code>{share_link}<\code> \n\n",
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("Lɪɴᴋ", url=share_link)],
                  [InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),

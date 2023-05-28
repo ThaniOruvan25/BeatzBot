@@ -21,7 +21,7 @@ async def forward_to_channel(bot: Client, message: Message, editable: Message):
             await asyncio.sleep(sl.value)
             await bot.send_message(
                 chat_id=int(Config.LOG_CHANNEL),
-                text=f"#FloodWait:\nGot FloodWait of `{str(sl.value)}s` from `{str(editable.chat.id)}` !!",
+                text=f"#FloodWait #{str(editable.chat.id)}:\nGot FloodWait of `{str(sl.value)}s` from `{str(editable.chat.id)}` !!",
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -52,11 +52,7 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
         share_link = f"https://telegram.dog/{Config.BOT_USERNAME}?start=ViralBeatz_{str_to_b64(str(SaveMessage.id))}"
         await editable.edit(
             f"**Your Files Saved in Batch**\n\n Link: <code>{share_link}<\code>\n\n"
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Lɪɴᴋ", url=share_link)],
-                 [InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
-                  InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots")]]
-            ),
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Lɪɴᴋ", url=share_link)]])
             disable_web_page_preview=True
         )
         await bot.send_message(
@@ -75,7 +71,7 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
         await editable.edit(f"Something Went Wrong!\n\n**Error:** `{err}`")
         await bot.send_message(
             chat_id=int(Config.LOG_CHANNEL),
-            text=f"#ERROR_TRACEBACK:\nGot Error from `{str(editable.chat.id)}` !!\n\n**Traceback:** `{err}`",
+            text=f"#Error #{str(editable.chat.id)}:\nGot Error from `{str(editable.chat.id)}` !!\n\n**Traceback:** `{err}`",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -98,11 +94,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         await editable.edit(
             f"**Your File Saved**\n\n"
             f"Link:<code>{share_link}<\code> \n\n",
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Lɪɴᴋ", url=share_link)],
-                 [InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
-                  InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots")]]
-            ),
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Lɪɴᴋ", url=share_link)]])
             disable_web_page_preview=True
         )
     except FloodWait as sl:
@@ -111,7 +103,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
             await asyncio.sleep(sl.value)
             await bot.send_message(
                 chat_id=int(Config.LOG_CHANNEL),
-                text="#FloodWait:\n"
+                text="#FloodWait #{str(editable.chat.id)}:\n"
                      f"Got FloodWait of `{str(sl.value)}s` from `{str(editable.chat.id)}` !!",
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
@@ -125,7 +117,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         await editable.edit(f"Something Went Wrong!\n\n**Error:** `{err}`")
         await bot.send_message(
             chat_id=int(Config.LOG_CHANNEL),
-            text="#ERROR_TRACEBACK:\n"
+            text="#Error #{str(editable.chat.id)}:\n"
                  f"Got Error from `{str(editable.chat.id)}` !!\n\n"
                  f"**Traceback:** `{err}`",
             disable_web_page_preview=True,

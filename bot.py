@@ -68,11 +68,17 @@ async def start(bot: Client, cmd: Message):
     usr_cmd = cmd.text.split("_", 1)[-1]
     if usr_cmd == "/start":
         await add_user_to_database(bot, cmd)
-        g = await cmd.reply_text(
-                Config.HOME_TEXT0.format(cmd.from_user.first_name, cmd.from_user.id),
-                disable_web_page_preview=True,
+        await cmd.reply_text(
+            Config.HOME_TEXT.format(cmd.from_user.first_name, cmd.from_user.id),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="HOME0")
+                    ]
+                ]
             )
-        await g.edit
+        )
     else:
         try:
             try:
@@ -307,6 +313,32 @@ async def button(bot: Client, cmd: CallbackQuery):
                     [
                         InlineKeyboardButton("🏡 Hᴏᴍᴇ", callback_data="gotohome"),
                         InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
+                    ]
+                ]
+            )
+        )
+
+    elif "next1" in cb_data:
+        await cmd.message.edit(
+            Config.HOME1.format(cmd.message.chat.first_name, cmd.message.chat.id),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next2")
+                    ]
+                ]
+            )
+        )
+        
+     elif "next2" in cb_data:
+        await cmd.message.edit(
+            Config.HOME2.format(cmd.message.chat.first_name, cmd.message.chat.id),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next3")
                     ]
                 ]
             )

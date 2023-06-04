@@ -31,20 +31,22 @@ Send me any file I will save it in my Database. Also works for channel. Add me t
 
 📢 **Updates Channel:** [Viral Beatz](https://t.me/ViralBeat)
 """
-	HOME3 = """
-Dear [{}](tg://user?id={}) ❤️‍🔥
+	HOME1 = """
+Dear [{}](tg://user?id={}) ❤️‍🔥,
 
 Welcome to @ViralBeatz Team ❤️. Thanks for Starting me.
 """ 
 	HOME2 = """
 <code>Please Join Our Main Channel 👇.<\code>
 """
-	HOME4 = """
+	HOME3 = """
 **I am a Advanced File Store Bot 😎 with some useful Tools. ⚙** 
 
 **Send me any file I will give you a permanent Sharable Link😉. I Support Channel Also!**
 """
 	HOME = """
-** Check Help Menu for more info 😇.
-"""
-	
+Dear [{}](tg://user?id={}) ❤️‍🔥,
+
+**I am a Advanced File Store Bot 😎 with some useful Tools. ⚙** 
+
+**Send me any file I will give you a permanent Sharable Link😉. I Support Channel Also!**

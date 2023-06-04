@@ -69,7 +69,7 @@ async def start(bot: Client, cmd: Message):
     if usr_cmd == "/start":
         await add_user_to_database(bot, cmd)
         await cmd.reply_text(
-            Config.HOME_TEXT.format(cmd.from_user.first_name, cmd.from_user.id),
+            Config.HOME.format(cmd.from_user.first_name, cmd.from_user.id),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -338,12 +338,17 @@ async def button(bot: Client, cmd: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
+                        InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots"),
+                        InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz")
+                    ]
+                    [
                         InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next3")
                     ]
                 ]
             )
         )
 
+    elif "next" 
     elif "gotohome" in cb_data:
         await cmd.message.edit(
             Config.HOME_TEXT.format(cmd.message.chat.first_name, cmd.message.chat.id),

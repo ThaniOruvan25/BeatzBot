@@ -68,21 +68,11 @@ async def start(bot: Client, cmd: Message):
     usr_cmd = cmd.text.split("_", 1)[-1]
     if usr_cmd == "/start":
         await add_user_to_database(bot, cmd)
-        await cmd.reply_text(
-            Config.HOME_TEXT.format(cmd.from_user.first_name, cmd.from_user.id),
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
-                        InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots")
-                    ],
-                    [
-                        InlineKeyboardButton("Aʙᴏᴜᴛ", callback_data="about")
-                    ]
-                ]
+        g = await cmd.reply_text(
+                Config.HOME_TEXT0.format(cmd.from_user.first_name, cmd.from_user.id),
+                disable_web_page_preview=True,
             )
-        )
+        await g.edit
     else:
         try:
             try:

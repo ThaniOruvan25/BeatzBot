@@ -340,7 +340,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                     [
                         InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots"),
                         InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz")
-                    ]
+                    ],
                     [
                         InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next3")
                     ]
@@ -348,10 +348,26 @@ async def button(bot: Client, cmd: CallbackQuery):
             )
         )
 
-    elif "next" 
-    elif "gotohome" in cb_data:
+     elif "next" in cb_data:
         await cmd.message.edit(
-            Config.HOME_TEXT.format(cmd.message.chat.first_name, cmd.message.chat.id),
+            Config.HOME.format(cmd.message.chat.first_name, cmd.message.chat.id),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
+                        InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots") 
+                    ],
+                    [
+                        InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
+                    ]
+                ]
+            )
+        )
+            
+     elif "home" in cb_data:
+        await cmd.message.edit(
+            Config.HOME.format(cmd.message.chat.first_name, cmd.message.chat.id),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -403,7 +419,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                 )
                 return
         await cmd.message.edit(
-            text=Config.HOME_TEXT.format(cmd.message.chat.first_name, cmd.message.chat.id),
+            text=Config.HOME.format(cmd.message.chat.first_name, cmd.message.chat.id),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -412,8 +428,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                         InlineKeyboardButton("Bᴏᴛ'ꜱ Cʜᴀɴɴᴇʟ", url="https://t.me/ThaniBots")
                     ],
                     [
-                        InlineKeyboardButton("Aʙᴏᴜᴛ", callback_data="about"),
-                        InlineKeyboardButton("Cʟᴏꜱᴇ", callback_data="close_data")
+                        InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
                     ]
                 ]
             )

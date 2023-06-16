@@ -47,5 +47,25 @@ Welcome to @ViralBeatz Team ❤️. Thanks for Starting me.**
 
 	HOME = """
 Dear [{}](tg://user?id={}) ❤️‍🔥,
+**I am a Advanced File Store Bot 😎 with some useful Tools. ⚙** 
 
+**Send me any file I will give you a permanent Sharable Link😉. I Support Channel Also!**
+
+**I am a Advanced File Store Bot 😎 with some useful Tools. ⚙** 
+
+**Send me any file I will give you a permanent Sharable Link😉. I Support Channel Also!**
+
+Bot Made by @ViralBeatz ❤️‍🔥
 """
+	
+	BANUSER = """
+Dear [{}](tg://user?id={}) ❤️‍🔥,
+
+You are Banned by my Admins. If you are banned, You can't use this Bot. 
+
+So contact Admins via @ViralBeatzBot. 
+
+@ViralBeatz. 
+"""
+	
+	

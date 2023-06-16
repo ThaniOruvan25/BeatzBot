@@ -58,7 +58,11 @@ async def _(bot: Client, cmd: Message):
 async def start(bot: Client, cmd: Message):
 
     if cmd.from_user.id in Config.BANNED_USERS:
-        await cmd.reply_text("<b>ʏᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ʙʏ ᴍʏ ᴀᴅᴍɪɴ! ᴄᴏɴᴛᴀᴄᴛ @ViralBeatzBot ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ.")
+        await cmd.reply_text(
+            Config.BANUSER.format(cmd.from_user.first_name, cmd.from_user.id),
+            disable_web_page_preview=True,
+            )
+        )
         return
     if Config.UPDATES_CHANNEL is not None:
         back = await handle_force_sub(bot, cmd)
@@ -159,10 +163,13 @@ async def main(bot: Client, message: Message):
                 chat_id=int(Config.LOG_CHANNEL),
                 text=f"#FloodWait:\nGot FloodWait of `{str(sl.value)}s` from `{str(message.chat.id)}` !!",
                 disable_web_page_preview=True
-            await bot.send_message
+            )
+            await bot.send_message(
                 chat_id=int(Config.BOT_OWNER),
-                text=f"Flood Wait From Channel\n\nChannel Name - {message.chat.title}\nChannel id - {str(message.chat.id)}\nChannel Link - {message.chat.username}\n\n <code> /ban_user {str(message.chat.id)} <\code>",
-                disable_web_page_preview=True
+                text=f"Flood Wait From Channel\n\nChannel Name - #{message.chat.title}\nChannel id - #{str(message.chat.id)}\nChannel Link - {message.chat.username}\n\n <code> /ban_user {str(message.chat.id)} <\code>",
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("BAN", callback_data=f"ban_user_{str(editable.chat.id)}")]
             )
         except Exception as err:
             await bot.leave_chat(message.chat.id)
@@ -187,7 +194,7 @@ async def sts(_, m: Message):
     )
 
 
-@Bot.on_message(filters.private & filters.command("ban_user") & filters.user(Config.BOT_OWNER))
+@Bot.on_message(filters.command("ban_user") & filters.user(Config.BOT_OWNER))
 async def ban(c: Client, m: Message):
     
     if len(m.command) == 1:
@@ -231,7 +238,7 @@ async def ban(c: Client, m: Message):
         )
 
 
-@Bot.on_message(filters.private & filters.command("unban_user") & filters.user(Config.BOT_OWNER))
+@Bot.on_message(filters.command("unban_user") & filters.user(Config.BOT_OWNER))
 async def unban(c: Client, m: Message):
 
     if len(m.command) == 1:
@@ -270,7 +277,7 @@ async def unban(c: Client, m: Message):
         )
 
 
-@Bot.on_message(filters.private & filters.command("banned_users") & filters.user(Config.BOT_OWNER))
+@Bot.on_message(filters.command("banned_users") & filters.user(Config.BOT_OWNER))
 async def _banned_users(_, m: Message):
     
     all_banned_users = await db.get_all_banned_users()
@@ -311,7 +318,7 @@ async def button(bot: Client, cmd: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("🏡 Hᴏᴍᴇ", callback_data="gotohome"),
+                        InlineKeyboardButton("🏡 Hᴏᴍᴇ", callback_data="home"),
                         InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
                     ]
                 ]
@@ -342,7 +349,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                         InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz")
                     ],
                     [
-                        InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next3")
+                        InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next")
                     ]
                 ]
             )
@@ -359,6 +366,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                         InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots") 
                     ],
                     [
+                        InlineKeyboardButton("Aʙᴏᴜᴛ", callback_data="aboutbot"),
                         InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
                     ]
                 ]
@@ -456,8 +464,8 @@ async def button(bot: Client, cmd: CallbackQuery):
         k = await cmd.message.edit("File Saved in Batch!\n\n"
                                "Press below button to get batch link.",
                                reply_markup=InlineKeyboardMarkup([
-                                   [InlineKeyboardButton("Get Batch Link", callback_data="getBatchLink")],
-                                   [InlineKeyboardButton("Close Message", callback_data="closeMessage")]
+                                   [InlineKeyboardButton("Gᴇᴛ Lɪɴᴋ", callback_data="getBatchLink")],
+                                   [InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="closeMessage")]
                                ]))
         await asyncio.sleep(120)
         await k.delete()
@@ -471,6 +479,7 @@ async def button(bot: Client, cmd: CallbackQuery):
             await cmd.answer("Batch List Empty!", show_alert=True)
             return
         await cmd.message.edit("Please wait, generating batch link ...")
+        await asyncio.sleep(5)
         await save_batch_media_in_channel(bot=bot, editable=cmd.message, message_ids=message_ids)
         MediaList[f"{str(cmd.from_user.id)}"] = []
         

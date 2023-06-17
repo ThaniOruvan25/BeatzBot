@@ -73,7 +73,7 @@ async def start(bot: Client, cmd: Message):
     if usr_cmd == "/start":
         await add_user_to_database(bot, cmd)
         await cmd.reply_text(
-            Config.HOME.format(cmd.from_user.first_name, cmd.from_user.id),
+            Config.HOME1.format(cmd.from_user.first_name, cmd.from_user.id),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -103,9 +103,19 @@ async def start(bot: Client, cmd: Message):
             for i in range(len(message_ids)):
                 await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
         except Exception as err:
-            await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
-
-
+            await cmd.reply_text(f"**Something went wrong!\n\nError Reson:** `{err}`")
+            await bot.send_message(
+                chat_id=cmd.from_user.id,
+                text ="**Forwarding This Error Message to Admin.",
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        InlineKeyboardButton("Continue", callback_data="continue",
+                        InlineKeyboardButton("Cancel", callback_data="cancel",
+                    ]
+                )
+            )
+                        
 @Bot.on_message((filters.document | filters.video | filters.audio | filters.photo) & ~filters.chat(Config.DB_CHANNEL))
 async def main(bot: Client, message: Message):
 
@@ -165,11 +175,11 @@ async def main(bot: Client, message: Message):
                 disable_web_page_preview=True
             )
             await bot.send_message(
-                chat_id=int(Config.BOT_OWNER),
-                text=f"Flood Wait From Channel\n\nChannel Name - #{message.chat.title}\nChannel id - #{str(message.chat.id)}\nChannel Link - {message.chat.username}\n\n <code> /ban_user {str(message.chat.id)} <\code>",
+                chat_id=int(Config.THANI),
+                text=f"Flood Wait From Channel\n\nChannel Name - #{message.chat.title}\nChannel id - #{str(message.chat.id)}\nChannel Link - {message.chat.username}.",
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("BAN", callback_data=f"ban_user_{str(editable.chat.id)}")]
+                [InlineKeyboardButton("BAN", callback_data=f"ban_user_{str(message.chat.id)}")]
             )
         except Exception as err:
             await bot.leave_chat(message.chat.id)
@@ -180,12 +190,12 @@ async def main(bot: Client, message: Message):
             )
 
 
-@Bot.on_message(filters.private & filters.command("broadcast") & filters.user(Config.BOT_OWNER) & filters.reply)
+@Bot.on_message(filters.command("broadcast") & filters.user(Config.BOT_OWNER) & filters.reply)
 async def broadcast_handler_open(_, m: Message):
     await main_broadcast_handler(m, db)
 
 
-@Bot.on_message(filters.private & filters.command("status") & filters.user(Config.BOT_OWNER))
+@Bot.on_message(filters.command("status") & filters.user(Config.BOT_OWNER))
 async def sts(_, m: Message):
     total_users = await db.total_users_count()
     await m.reply_text(

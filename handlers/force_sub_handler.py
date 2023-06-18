@@ -37,9 +37,6 @@ async def handle_force_sub(bot: Client, cmd: Message):
                 )
             await asyncio.sleep(120)
             await d.delete()
-            await bot.send_message(
-                chat_id=int(Config.BOT_OWNER),
-                text="Banned User started the Bot.\n\n"
             return 400
     except UserNotParticipant:
         try:
@@ -66,8 +63,21 @@ async def handle_force_sub(bot: Client, cmd: Message):
     except Exception:
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text=" <b>ꜱᴏᴍᴇ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ. ᴄᴏɴᴛᴀᴄᴛ @ViralBeatzBot.<\b>",
+            text="<b>#Error - Some Errors Occurred<\b>",
             disable_web_page_preview=True
         )
+        await asyncio.sleep(2)
+        await bot.send_message(
+            chat_id=cmd.from_user.id,
+            text ="**Forwarding This Error Message to Admin.",
+            disable_web_page_preview=True
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Continue ✅", callback_data="continue"),
+                        InlineKeyboardButton("Cancel ✖️", callback_data="close_data")
+                    ]
+                ]
+            )
         return 200
     return 200

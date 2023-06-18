@@ -60,8 +60,7 @@ async def start(bot: Client, cmd: Message):
     if cmd.from_user.id in Config.BANNED_USERS:
         await cmd.reply_text(
             Config.BANUSER.format(cmd.from_user.first_name, cmd.from_user.id),
-            disable_web_page_preview=True,
-            )
+            disable_web_page_preview=True
         )
         return
     if Config.UPDATES_CHANNEL is not None:
@@ -185,7 +184,8 @@ async def main(bot: Client, message: Message):
                 text=f"Flood Wait From Channel\n\nChannel Name - #{message.chat.title}\nChannel id - #{str(message.chat.id)}\nChannel Link - {message.chat.username}.",
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("BAN", callback_data=f"ban_user_{str(message.chat.id)}")]
+                    [InlineKeyboardButton("BAN", callback_data=f"ban_user_{str(message.chat.id)}")]
+                ])
             )
         except Exception as err:
             await bot.leave_chat(message.chat.id)
@@ -194,7 +194,8 @@ async def main(bot: Client, message: Message):
                 text=f"#ERROR_TRACEBACK:\nGot Error from `{str(message.chat.id)}` !!\n\n**Traceback:** `{err}`",
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
-                [InlineKeyboardButton("Read ✅", callback_data="close_data")], 
+                    [InlineKeyboardButton("Read ✅", callback_data="close_data")],
+                )
             )
 
 

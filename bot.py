@@ -94,7 +94,7 @@ async def start(bot: Client, cmd: Message):
             if GetMessage.text:
                 message_ids = GetMessage.text.split(" ")
                 _response_msg = await cmd.reply_text(
-                    text=f"**Total Files:** `{len(message_ids)}`",
+                    text=f"**Total Files in this Batch:** `{len(message_ids)}`",
                     quote=True,
                     disable_web_page_preview=True
                 )
@@ -103,19 +103,20 @@ async def start(bot: Client, cmd: Message):
             for i in range(len(message_ids)):
                 await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
         except Exception as err:
-            await cmd.reply_text(f"**Something went wrong!\n\nError Reson:** `{err}`")
+            await cmd.reply_text(f"**#Error Something went wrong!\n\nError Reason:** `{err}`")
+            await asyncio.sleep(2)
             await bot.send_message(
                 chat_id=cmd.from_user.id,
                 text ="**Forwarding This Error Message to Admin.",
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
                     [
-                        InlineKeyboardButton("Continue", callback_data="continue",
-                        InlineKeyboardButton("Cancel", callback_data="cancel",
+                        InlineKeyboardButton("Continue ✅", callback_data="continue",
+                        InlineKeyboardButton("Cancel ✖️", callback_data="close_data",
                     ]
                 )
             )
-                        
+
 @Bot.on_message((filters.document | filters.video | filters.audio | filters.photo) & ~filters.chat(Config.DB_CHANNEL))
 async def main(bot: Client, message: Message):
 
@@ -175,7 +176,7 @@ async def main(bot: Client, message: Message):
                 disable_web_page_preview=True
             )
             await bot.send_message(
-                chat_id=int(Config.THANI),
+                chat_id=int(Config.THANI_CHANNEL),
                 text=f"Flood Wait From Channel\n\nChannel Name - #{message.chat.title}\nChannel id - #{str(message.chat.id)}\nChannel Link - {message.chat.username}.",
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup([
@@ -184,9 +185,11 @@ async def main(bot: Client, message: Message):
         except Exception as err:
             await bot.leave_chat(message.chat.id)
             await bot.send_message(
-                chat_id=int(Config.LOG_CHANNEL),
+                chat_id=int(Config.THANI_CHANNEL),
                 text=f"#ERROR_TRACEBACK:\nGot Error from `{str(message.chat.id)}` !!\n\n**Traceback:** `{err}`",
-                disable_web_page_preview=True
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup(
+                [InlineKeyboardButton("Read ✅", callback_data="close_data")], 
             )
 
 
@@ -243,7 +246,7 @@ async def ban(c: Client, m: Message):
     except:
         traceback.print_exc()
         await m.reply_text(
-            f"Error occoured! Traceback given below\n\n`{traceback.format_exc()}`",
+            f"Error occoured! #Traceback given below\n\n`{traceback.format_exc()}`",
             quote=True
         )
 
@@ -282,7 +285,7 @@ async def unban(c: Client, m: Message):
     except:
         traceback.print_exc()
         await m.reply_text(
-            f"Error occurred! Traceback given below\n\n`{traceback.format_exc()}`",
+            f"Error occurred! #Traceback given below\n\n`{traceback.format_exc()}`",
             quote=True
         )
 
@@ -311,11 +314,6 @@ async def _banned_users(_, m: Message):
         return
     await m.reply_text(reply_text, True)
 
-
-@Bot.on_message(filters.private & filters.command("clear_batch"))
-async def clear_user_batch(bot: Client, m: Message):
-    MediaList[f"{str(m.from_user.id)}"] = []
-    await m.reply_text("Cleared your batch files successfully!")         
 
 @Bot.on_callback_query()
 async def button(bot: Client, cmd: CallbackQuery):
@@ -400,7 +398,43 @@ async def button(bot: Client, cmd: CallbackQuery):
             )
         )
 
-    elif "refreshForceSub" in cb_data:
+     elif "continue" in cb_data:
+        s = await cmd.message.edit(
+                chat_id=cmd.from_user.id
+                text=f"Forwarding to Admins...",
+                disable_web_page_preview=True
+            )
+        await bot.send_message(
+            chat_id=int(Config.THANI_CHANNEL),
+            text=f"Error Occurred!\n\n➺Nᴀᴍᴇ - #[{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - #{cmd.from_user.id}",
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Read ✅", callback_data="close_data"),
+                        InlineKeyboardButton("Pending ✖️", callback_data="pending")
+                    ]
+                ]
+            )
+        )
+        await asyncio.sleep(10)
+        await s.edit(f"Forwarded To Admins ✅")
+
+     elif "pending" in cb_data:
+        await cmd.message.edit(
+            chat_id=int(Config.THANI_CHANNEL),
+            text=f"#Pending Error Occurred!\n\n➺Nᴀᴍᴇ - #[{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - #{cmd.from_user.id}",
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Read ✅", callback_data="close_data")
+                    ]
+                ]
+            )
+        )
+
+     elif "refreshForceSub" in cb_data:
         if Config.UPDATES_CHANNEL:
             if Config.UPDATES_CHANNEL.startswith("-100"):
                 channel_chat_id = int(Config.UPDATES_CHANNEL)

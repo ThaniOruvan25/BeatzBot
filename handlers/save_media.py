@@ -96,7 +96,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         share_link = f"https://telegram.dog/{Config.BOT_USERNAME}?start=ViralBeatz_{str_to_b64(file_er_id)}"
         await editable.edit(
             f"**Your File Saved**\n\n"
-            f"Link:<code>{share_link}<\code> \n\n",
+            f"Link:<code>{share_link}</code> \n\n",
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Lɪɴᴋ", url=share_link)]])
             disable_web_page_preview=True
         )
@@ -132,7 +132,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         )
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text ="**Forwarding This Error Message to Admin.",
+            text ="**Forwarding This Error Message to Admin.**",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [

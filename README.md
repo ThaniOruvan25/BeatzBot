@@ -1,18 +1,30 @@
-# PyroFilesStoreBot
-This is Telegram Parmanent Files Store Bot by [@AbirHasan2005](https://github.com/AbirHasan2005).
-
-* **Language:** [Python3](https://www.python.org)
-* **Library:** [Pyrogram](https://docs.pyrogram.org)
+# Beatz Store Bot 
+This is Telegram Parmanent Files Store Bot by [@ThaniOruvan25](https://telegram.dog/ThaniOruvan25)
 
 ### Features:
-- In PM Just Forward or Send any file it will save on Database & give you the Access Link.
-- In Channel Add Bot as Admin with Edit Rights. When you will send any file or media in Channel it will Edit the Broadcast Message with Saved Link Button.
-- You can also Broadcast anythings via this Bot.
-- You can also Do Force Sub to a Channel to allow access the Bot.
-- Save Multiple Files in Same Link. (Batch)
 
-### Demo Bot:
-<a href="https://t.me/MediasStoreBot"><img src="https://img.shields.io/badge/Demo-Telegram%20Bot-blue.svg?logo=telegram"></a>
+
+- In PM Just Forward or Send any file it will save on Database & give you the Sharable Link.
+- In Channel Add Bot as Admin with Edit & Invite Users Rights. When you will send any file or media in Channel, I will give you a Permanent Sharable Link 🔗. 
+- Messages Broadcast to users feature Available. 
+- Force Subscribe the Users 
+- Can save Single & Multiple Filesin a Link. 
+- Permanent Files Support 
+- 24 Hours Automatic delete Feature. 
+- Forwards the Error from users to Admin & Owner. 
+- Banned User's Broadcast via Bot
+
+
+To do list 
+- Add Shorten Links Support 
+- Add Protect Content 
+- Add Fast Download Link Support 
+- Add Report Button 
+- Command Features 
+
+
+### Bot Link:
+<a href="https://t.me/BeatzStoreBot"><img src="https://img.shields.io/badge/Viral%20Beatz-Store%20Bot-red.svg?logo=telegram"></a>
 
 ## Configs:
 - `API_ID` - Get this from [@TeleORG_Bot](https://t.me/TeleORG_Bot)
@@ -36,20 +48,13 @@ This is Telegram Parmanent Files Store Bot by [@AbirHasan2005](https://github.co
 - `BANNED_USERS` - Banned unwanted members
          - Put all banned user IDs & Separate with space.
 - `BANNED_CHAT_IDS` - All Banned Channel IDs *(Optional)*
-	- Put all banned channel IDs & Separate with space.
-
-### Video Tutorial:
-[![YouTube](https://img.shields.io/badge/YouTube-Video%20Tutorial-red?logo=youtube)](https://youtu.be/hHu2RaePhwI)
-
-### Deploy Now:
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AbirHasan2005/PyroFilesStoreBot)
+	- Put all banned channel IDs & Separate with space. 
 
 ## Commands:
 ```
-start - start the bot
-clear_batch - Clear User Batch Files
+start - start & check the bot
+broadcast - [Admin Only] Broadcast to users
 status - Show number of users in DB [Owner Only]
-broadcast - Broadcast replied message to DB Users [Owner Only]
 ban_user - [user_id] [ban_duration] [ban_reason] Ban Any User [Owner Only]
 unban_user - [user_id] Unban Any User [Owner Only]
 banned_users - Get All Banned Users [Owner Only]

@@ -111,8 +111,8 @@ async def start(bot: Client, cmd: Message):
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
                     [
-                        InlineKeyboardButton("Continue ✅", callback_data="continue",
-                        InlineKeyboardButton("Cancel ✖️", callback_data="close_data",
+                        InlineKeyboardButton("Continue ✅", callback_data="continue"),
+                        InlineKeyboardButton("Cancel ✖️", callback_data="close_data")
                     ]
                 )
             )

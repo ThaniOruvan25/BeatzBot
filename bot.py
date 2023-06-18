@@ -94,14 +94,17 @@ async def start(bot: Client, cmd: Message):
             if GetMessage.text:
                 message_ids = GetMessage.text.split(" ")
                 _response_msg = await cmd.reply_text(
-                    text=f"**Total Files in this Batch:** `{len(message_ids)}`",
+                    text=f"**Total Files in this Batch:** `{len(message_ids)}`\n\n<b>Note: <spoiler>All Files Will be Deteled After 2 Hours,So Save this Batch Link<spoiler></b>",
                     quote=True,
                     disable_web_page_preview=True
                 )
             else:
                 message_ids.append(int(GetMessage.id))
             for i in range(len(message_ids)):
-                await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
+                u = await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
+                await asyncio.sleep(7200)
+                await u.delete()
+
         except Exception as err:
             await cmd.reply_text(f"**#Error Something went wrong!\n\nError Reason:** `{err}`")
             await asyncio.sleep(5)

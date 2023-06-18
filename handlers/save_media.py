@@ -68,14 +68,17 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Open Link", url=share_link)]])
         )
     except Exception as err:
-        await editable.edit(f"Something Went Wrong!\n\n**Error:** `{err}`")
+        await editable.edit(f"#Error - Something Went Wrong!\n\n**Error:** `{err}`")
         await bot.send_message(
-            chat_id=int(Config.LOG_CHANNEL),
-            text=f"#Error #{str(editable.chat.id)}:\nGot Error from `{str(editable.chat.id)}` !!\n\n**Traceback:** `{err}`",
+            chat_id=cmd.from_user.id,
+            text ="**Forwarding This Error Message to Admin.",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("Ban User", callback_data=f"ban_user_{str(editable.chat.id)}")]
+                    [
+                        InlineKeyboardButton("Continue ✅", callback_data="continue"),
+                        InlineKeyboardButton("Cancel ✖️", callback_data="close_data")
+                    ]
                 ]
             )
         )
@@ -104,7 +107,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
             await bot.send_message(
                 chat_id=int(Config.LOG_CHANNEL),
                 text="#FloodWait #{str(editable.chat.id)}:\n"
-                     f"Got FloodWait of `{str(sl.value)}s` from `{str(editable.chat.id)}` !!",
+                     f"Got FloodWait of `{str(sl.value)}s` from `{str(editable.chat.id)}`!!",
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -118,12 +121,25 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         await bot.send_message(
             chat_id=int(Config.LOG_CHANNEL),
             text="#Error #{str(editable.chat.id)}:\n"
-                 f"Got Error from `{str(editable.chat.id)}` !!\n\n"
+                 f"Got Error from `{str(editable.chat.id)}`!!\n\n"
                  f"**Traceback:** `{err}`",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [InlineKeyboardButton("Ban User", callback_data=f"ban_user_{str(editable.chat.id)}")]
+                ]
+            )
+        )
+        await bot.send_message(
+            chat_id=cmd.from_user.id,
+            text ="**Forwarding This Error Message to Admin.",
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Continue ✅", callback_data="continue"),
+                        InlineKeyboardButton("Cancel ✖️", callback_data="close_data")
+                    ]
                 ]
             )
         )

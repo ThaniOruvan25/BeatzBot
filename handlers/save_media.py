@@ -52,7 +52,7 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
         share_link = f"https://telegram.dog/{Config.BOT_USERNAME}?start=ViralBeatz_{str_to_b64(str(SaveMessage.id))}"
         await editable.edit(
             f"**Your Files Saved in Batch**\n\n Link: <code>{share_link}<\code>\n\n"
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Lɪɴᴋ", url=share_link)]])
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Lɪɴᴋ", url=share_link)]]),
             disable_web_page_preview=True
         )
         await bot.send_message(
@@ -97,7 +97,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         await editable.edit(
             f"**Your File Saved**\n\n"
             f"Link:<code>{share_link}</code> \n\n",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Lɪɴᴋ", url=share_link)]])
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Lɪɴᴋ", url=share_link)]]),
             disable_web_page_preview=True
         )
     except FloodWait as sl:

@@ -104,7 +104,7 @@ async def start(bot: Client, cmd: Message):
                 await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
         except Exception as err:
             await cmd.reply_text(f"**#Error Something went wrong!\n\nError Reason:** `{err}`")
-            await asyncio.sleep(2)
+            await asyncio.sleep(5)
             await bot.send_message(
                 chat_id=cmd.from_user.id,
                 text ="**Forwarding This Error Message to Admin.",
@@ -136,15 +136,17 @@ async def main(bot: Client, message: Message):
         if Config.OTHER_USERS_CAN_SAVE_FILE is False:
             return
 
-        await message.reply_text(
-            text="**Choose an option from below:**",
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Sᴀᴠᴇ ɪɴ Bᴀᴛᴄʜ", callback_data="addToBatchTrue")],
-                [InlineKeyboardButton("Gᴇᴛ Lɪɴᴋ", callback_data="addToBatchFalse")]
-            ]),
-            quote=True,
-            disable_web_page_preview=True
-        )
+        d = await message.reply_text(
+                text="**Choose an option from below:**",
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("Sᴀᴠᴇ ɪɴ Bᴀᴛᴄʜ", callback_data="addToBatchTrue")],
+                    [InlineKeyboardButton("Gᴇᴛ Lɪɴᴋ", callback_data="addToBatchFalse")]
+                ]),
+                quote=True,
+                disable_web_page_preview=True
+           )
+        await asyncio.sleep(600)
+        await d.delete(True)
     elif message.chat.type == enums.ChatType.CHANNEL:
         if (message.chat.id == int(Config.LOG_CHANNEL)) or (message.chat.id == int(Config.UPDATES_CHANNEL)) or message.forward_from_chat or message.forward_from:
             return

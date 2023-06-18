@@ -339,7 +339,7 @@ async def button(bot: Client, cmd: CallbackQuery):
             )
         )
 
-    elif "next1" in cb_data:
+     elif "next1" in cb_data:
         await cmd.message.edit(
             Config.HOME1.format(cmd.message.chat.first_name, cmd.message.chat.id),
             disable_web_page_preview=True,

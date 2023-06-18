@@ -22,7 +22,7 @@ async def handle_user_status(bot, cmd):
             )
     ban_status = await db.get_ban_status(chat_id)
     if ban_status["is_banned"]:
-    await z.edit(f"<b>#{cmd.from_user.first_name} #{cmd.from_user.id} #{Config.BOT_USERNAME}\n\n➺Nᴀᴍᴇ - [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - {cmd.from_user.id}\n\n <i>This User is Banned.</i>➺Tᴏᴛᴀʟ Uꜱᴇʀꜱ - <code>{db.total_users_count()}</code></b>")
+        await z.edit(f"<b>#{cmd.from_user.first_name} #{cmd.from_user.id} #{Config.BOT_USERNAME}\n\n➺Nᴀᴍᴇ - [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - {cmd.from_user.id}\n\n <i>This User is Banned.</i>➺Tᴏᴛᴀʟ Uꜱᴇʀꜱ - <code>{db.total_users_count()}</code></b>")
         if (datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])).days > ban_status["ban_duration"]:
             await db.remove_ban(chat_id)
         else:

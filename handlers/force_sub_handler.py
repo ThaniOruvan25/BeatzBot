@@ -32,7 +32,7 @@ async def handle_force_sub(bot: Client, cmd: Message):
         if user.status == "kicked":
             d = await bot.send_message(
                 chat_id=cmd.from_user.id,
-                text="<b>Yᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ.<\b>",
+                text="<b>You are banned to use this bot.</b>",
                 disable_web_page_preview=True
                 )
             await asyncio.sleep(120)
@@ -63,7 +63,7 @@ async def handle_force_sub(bot: Client, cmd: Message):
     except Exception:
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="<b>#Error - Some Errors Occurred<\b>",
+            text="<b>#Error - Some Errors Occurred</b>",
             disable_web_page_preview=True
         )
         await asyncio.sleep(2)
@@ -79,5 +79,6 @@ async def handle_force_sub(bot: Client, cmd: Message):
                     ]
                 ]
             )
+        )
         return 200
     return 200

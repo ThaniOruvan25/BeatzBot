@@ -131,7 +131,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
             )
         )
         await bot.send_message(
-            chat_id=cmd.from_user.id,
+            chat_id=editable.from_user.id,
             text ="**Forwarding This Error Message to Admin.**",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(

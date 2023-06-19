@@ -390,44 +390,44 @@ async def button(bot: Client, cmd: CallbackQuery):
            )
        )
             
-     elif "home" in cb_data:
-        await cmd.message.edit(
-            Config.HOME.format(cmd.message.chat.first_name, cmd.message.chat.id),
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
-                        InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots")
-                    ],
-                    [
-                        InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
-                    ]
-                ]
-            )
-        )
+    elif "home" in cb_data:
+       await cmd.message.edit(
+           Config.HOME.format(cmd.message.chat.first_name, cmd.message.chat.id),
+           disable_web_page_preview=True,
+           reply_markup=InlineKeyboardMarkup(
+               [
+                   [
+                       InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
+                       InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots")
+                   ],
+                   [
+                       InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
+                   ]
+               ]
+           )
+       )
 
-     elif "continue" in cb_data:
-        s = await cmd.message.edit(
-                chat_id=cmd.from_user.id
-                text=f"Forwarding to Admins...",
-                disable_web_page_preview=True
-            )
-        await bot.send_message(
-            chat_id=int(Config.THANI_CHANNEL),
-            text=f"Error Occurred!\n\n➺Nᴀᴍᴇ - #[{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - #{cmd.from_user.id}",
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Read ✅", callback_data="close_data"),
-                        InlineKeyboardButton("Pending ✖️", callback_data="pending")
-                    ]
-                ]
-            )
-        )
-        await asyncio.sleep(10)
-        await s.edit(f"Forwarded To Admins ✅")
+    elif "continue" in cb_data:
+       s = await cmd.message.edit(
+               chat_id=cmd.from_user.id
+               text=f"Forwarding to Admins...",
+               disable_web_page_preview=True
+           )
+       await bot.send_message(
+           chat_id=int(Config.THANI_CHANNEL),
+           text=f"Error Occurred!\n\n➺Nᴀᴍᴇ - #[{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - #{cmd.from_user.id}",
+           disable_web_page_preview=True,
+           reply_markup=InlineKeyboardMarkup(
+               [
+                   [
+                       InlineKeyboardButton("Read ✅", callback_data="close_data"),
+                       InlineKeyboardButton("Pending ✖️", callback_data="pending")
+                   ]
+               ]
+           )
+       )
+       await asyncio.sleep(10)
+       await s.edit(f"Forwarded To Admins ✅")
 
      elif "pending" in cb_data:
         await cmd.message.edit(

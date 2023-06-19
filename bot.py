@@ -409,7 +409,7 @@ async def button(bot: Client, cmd: CallbackQuery):
 
     elif "continue" in cb_data:
        s = await cmd.message.edit(
-               chat_id=cmd.from_user.id
+               chat_id=cmd.from_user.id,
                text=f"Forwarding to Admins...",
                disable_web_page_preview=True
            )

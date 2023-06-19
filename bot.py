@@ -429,71 +429,71 @@ async def button(bot: Client, cmd: CallbackQuery):
        await asyncio.sleep(10)
        await s.edit(f"Forwarded To Admins ✅")
 
-     elif "pending" in cb_data:
-        await cmd.message.edit(
-            chat_id=int(Config.THANI_CHANNEL),
-            text=f"#Pending Error Occurred!\n\n➺Nᴀᴍᴇ - #[{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - #{cmd.from_user.id}",
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Read ✅", callback_data="close_data")
-                    ]
-                ]
-            )
-        )
+    elif "pending" in cb_data:
+       await cmd.message.edit(
+           chat_id=int(Config.THANI_CHANNEL),
+           text=f"#Pending Error Occurred!\n\n➺Nᴀᴍᴇ - #[{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id})\n➺Tɢ Iᴅ - #{cmd.from_user.id}",
+           disable_web_page_preview=True,
+           reply_markup=InlineKeyboardMarkup(
+               [
+                   [
+                       InlineKeyboardButton("Read ✅", callback_data="close_data")
+                   ]
+               ]
+           )
+       )
 
-     elif "refreshForceSub" in cb_data:
-        if Config.UPDATES_CHANNEL:
-            if Config.UPDATES_CHANNEL.startswith("-100"):
-                channel_chat_id = int(Config.UPDATES_CHANNEL)
-            else:
-                channel_chat_id = Config.UPDATES_CHANNEL
-            try:
-                user = await bot.get_chat_member(channel_chat_id, cmd.message.chat.id)
-                if user.status == "kicked":
-                    await cmd.message.edit(
-                        text="<b>ʏᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ʙʏ ᴍʏ ᴀᴅᴍɪɴ! ᴄᴏɴᴛᴀᴄᴛ @ViralBeatzBot ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ.<\b>",
-                        disable_web_page_preview=True
-                    )
-                    return
-            except UserNotParticipant:
-                invite_link = await get_invite_link(channel_chat_id)
-                await cmd.message.edit(
-                    text="**You Still Didn't Join ☹️, Please Join My Updates Channel to use this Bot!**",
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)
-                            ],
-                            [
-                                InlineKeyboardButton("🔄 Refresh 🔄", callback_data="refreshmeh")
-                            ]
-                        ]
-                    )
-                )
-                return
-            except Exception:
-                await cmd.message.edit(
-                    text="Something went Wrong",
-                    disable_web_page_preview=True
-                )
-                return
-        await cmd.message.edit(
-            text=Config.HOME.format(cmd.message.chat.first_name, cmd.message.chat.id),
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
-                        InlineKeyboardButton("Bᴏᴛ'ꜱ Cʜᴀɴɴᴇʟ", url="https://t.me/ThaniBots")
-                    ],
-                    [
-                        InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
-                    ]
-                ]
-            )
-        )
+    elif "refreshForceSub" in cb_data:
+       if Config.UPDATES_CHANNEL:
+           if Config.UPDATES_CHANNEL.startswith("-100"):
+               channel_chat_id = int(Config.UPDATES_CHANNEL)
+           else:
+               channel_chat_id = Config.UPDATES_CHANNEL
+           try:
+               user = await bot.get_chat_member(channel_chat_id, cmd.message.chat.id)
+               if user.status == "kicked":
+                   await cmd.message.edit(
+                       text="<b>ʏᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ʙʏ ᴍʏ ᴀᴅᴍɪɴ! ᴄᴏɴᴛᴀᴄᴛ @ViralBeatzBot ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏ.<\b>",
+                       disable_web_page_preview=True
+                   )
+                   return
+           except UserNotParticipant:
+               invite_link = await get_invite_link(channel_chat_id)
+               await cmd.message.edit(
+                   text="**You Still Didn't Join ☹️, Please Join My Updates Channel to use this Bot!**",
+                   reply_markup=InlineKeyboardMarkup(
+                       [
+                           [
+                               InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)
+                           ],
+                           [
+                               InlineKeyboardButton("🔄 Refresh 🔄", callback_data="refreshmeh")
+                           ]
+                       ]
+                   )
+               )
+               return
+           except Exception:
+               await cmd.message.edit(
+                   text="Something went Wrong",
+                   disable_web_page_preview=True
+               )
+               return
+       await cmd.message.edit(
+           text=Config.HOME.format(cmd.message.chat.first_name, cmd.message.chat.id),
+           disable_web_page_preview=True,
+           reply_markup=InlineKeyboardMarkup(
+               [
+                   [
+                       InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
+                       InlineKeyboardButton("Bᴏᴛ'ꜱ Cʜᴀɴɴᴇʟ", url="https://t.me/ThaniBots")
+                   ],
+                   [
+                       InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
+                   ]
+               ]
+           )
+       )
 
     elif cb_data.startswith("ban_user_"):
         user_id = cb_data.split("_", 2)[-1]

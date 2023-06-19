@@ -342,53 +342,53 @@ async def button(bot: Client, cmd: CallbackQuery):
             )
         )
 
-     elif "next1" in cb_data:
-        await cmd.message.edit(
-            Config.HOME1.format(cmd.message.chat.first_name, cmd.message.chat.id),
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next2")
-                    ]
-                ]
-            )
-        )
+    elif "next1" in cb_data:
+       await cmd.message.edit(
+           Config.HOME1.format(cmd.message.chat.first_name, cmd.message.chat.id),
+           disable_web_page_preview=True,
+           reply_markup=InlineKeyboardMarkup(
+               [
+                   [
+                       InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next2")
+                   ]
+               ]
+           )
+       )
         
-     elif "next2" in cb_data:
-        await cmd.message.edit(
-            Config.HOME2.format(cmd.message.chat.first_name, cmd.message.chat.id),
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots"),
-                        InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz")
-                    ],
-                    [
-                        InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next")
-                    ]
-                ]
-            )
-        )
+    elif "next2" in cb_data:
+       await cmd.message.edit(
+           Config.HOME2.format(cmd.message.chat.first_name, cmd.message.chat.id),
+           disable_web_page_preview=True,
+           reply_markup=InlineKeyboardMarkup(
+               [
+                   [
+                       InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots"),
+                       InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz")
+                   ],
+                   [
+                       InlineKeyboardButton("Nᴇxᴛ ﹥", callback_data="next")
+                   ]
+               ]
+           )
+       )
 
-     elif "next" in cb_data:
-        await cmd.message.edit(
-            Config.HOME.format(cmd.message.chat.first_name, cmd.message.chat.id),
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
-                        InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots") 
-                    ],
-                    [
-                        InlineKeyboardButton("Aʙᴏᴜᴛ", callback_data="aboutbot"),
-                        InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
-                    ]
-                ]
-            )
-        )
+    elif "next" in cb_data:
+       await cmd.message.edit(
+           Config.HOME.format(cmd.message.chat.first_name, cmd.message.chat.id),
+           disable_web_page_preview=True,
+           reply_markup=InlineKeyboardMarkup(
+               [
+                   [
+                       InlineKeyboardButton("Mᴀɪɴ Cʜᴀɴɴᴇʟ", url="https://t.me/ViralBeatz"),
+                       InlineKeyboardButton("Bᴏᴛ'ꜱ Uᴘᴅᴀᴛᴇꜱ", url="https://t.me/ThaniBots") 
+                   ],
+                   [
+                       InlineKeyboardButton("Aʙᴏᴜᴛ", callback_data="aboutbot"),
+                       InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close_data")
+                   ]
+               ]
+           )
+       )
             
      elif "home" in cb_data:
         await cmd.message.edit(
